@@ -16,10 +16,11 @@ const JWT_SECRET =
   "hvdvay6ert72839289()aiyg8t87qt72393293883uhefiuh78ttq3ifi78272jbkj?[]]pou89ywe";
  
 
-  mongoose.connect('mongodb+srv://girishNB:Qwe123%2B-%40@cluster0.8kdub.mongodb.net/test?retryWrites=true&w=majority', {
+  mongoose.connect('mongodb+srv://girishNB:Qwe123%2B-%40@cluster0.mongodb.net/test?retryWrites=true&w=majority', {
     useNewUrlParser: true,
-    useUnifiedTopology: true
-   })
+    useUnifiedTopology: true,
+    tls: true,
+  })
   .then(() => {
     console.log("Connected to database");
   })
