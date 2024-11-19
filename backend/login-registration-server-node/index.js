@@ -16,7 +16,7 @@ const JWT_SECRET =
   "hvdvay6ert72839289()aiyg8t87qt72393293883uhefiuh78ttq3ifi78272jbkj?[]]pou89ywe";
  
 
-  mongoose.connect('mongodb://localhost:27017/admin', {
+  mongoose.connect('mongodb+srv://girishbadiger996:8eqnCs6Nm7q4kHX@cluster0.8kdub.mongodb.net/', {
     useNewUrlParser: true,
     useUnifiedTopology: true
    })
