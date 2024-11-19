@@ -18,6 +18,8 @@ const MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://girishNB:Qwe123%2B
 const connectDB = async () => {
   try {
     const conn = await mongoose.connect(MONGODB_URI, {
+      ssl: true, // Explicitly enable SSL
+      sslValidate: true, // Ensure SSL certificate is valid
       useNewUrlParser: true,
       useUnifiedTopology: true,
       serverSelectionTimeoutMS: 5000,
