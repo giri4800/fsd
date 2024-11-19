@@ -1,30 +1,63 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-app.use(express.json());
 const cors = require("cors");
-app.use(cors());
 const bcrypt = require("bcryptjs");
+
+// Middleware
+app.use(express.json());
+app.use(cors());
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 
+// MongoDB Connection String
+// Note: In production, use environment variables for sensitive data
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://girishNB:Qwe123%2B-%40@cluster0.8kdub.mongodb.net/test?retryWrites=true&w=majority";
 
-const jwt = require("jsonwebtoken");
-var nodemailer = require("nodemailer");
+// MongoDB Connection Function
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect(MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      serverSelectionTimeoutMS: 5000,
+      socketTimeoutMS: 45000,
+    });
+    
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+  } catch (error) {
+    console.error('MongoDB Connection Error:', error.message);
+    // Log more details about the error
+    if (error.name === 'MongooseServerSelectionError') {
+      console.error('Server Selection Error Details:', {
+        name: error.name,
+        message: error.message,
+        code: error.code,
+        topology: error.topology
+      });
+    }
+    // Exit with failure
+    process.exit(1);
+  }
+};
 
-const JWT_SECRET =
-  "hvdvay6ert72839289()aiyg8t87qt72393293883uhefiuh78ttq3ifi78272jbkj?[]]pou89ywe";
- 
+// Connect to MongoDB
+connectDB();
 
-  mongoose.connect('mongodb+srv://girishNB:Qwe123%2B-%40@cluster0.mongodb.net/test?retryWrites=true&w=majority', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    tls: true,
-  })
-  .then(() => {
-    console.log("Connected to database");
-  })
-  .catch((e) => console.log(e));
+// Error handling for after initial connection
+mongoose.connection.on('error', err => {
+  console.error('MongoDB connection error:', err);
+});
+
+mongoose.connection.on('disconnected', () => {
+  console.log('MongoDB disconnected');
+});
+
+// Start server only after DB connection
+const PORT = process.env.PORT || 5001;
+app.listen(PORT, () => {
+  console.log(`Server Started on port ${PORT}`);
+});
 
 require("./userDetails");
  
