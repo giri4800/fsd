@@ -41,6 +41,11 @@ const Navbar = ({ isLoggedIn, userType }) => {
         {/* If the user is on /userHome1 */}
         {isLoggedIn && location.pathname === "/userHome1" && (
           <>
+          <li className="nav-item">
+              <Link to="/homePage" className="nav-link">
+                Home
+              </Link>
+            </li>
            
             <li className="nav-item">
               <Link to="/homePage" className="nav-link">
@@ -56,6 +61,11 @@ const Navbar = ({ isLoggedIn, userType }) => {
         )}
         {isLoggedIn && location.pathname === "/userHome" && (
           <>
+          <li className="nav-item">
+              <Link to="/homePage" className="nav-link">
+                Home
+              </Link>
+            </li>
           <li className="nav-item">
               <Link to="/homePage" className="nav-link">
                 Back
@@ -74,6 +84,7 @@ const Navbar = ({ isLoggedIn, userType }) => {
         {/* If the user is on /userHome2 */}
         {isLoggedIn && location.pathname === "/userHome2" && (
           <>
+
           <li className="nav-item">
               <Link to="/homePage" className="nav-link">
                 Back
@@ -84,7 +95,11 @@ const Navbar = ({ isLoggedIn, userType }) => {
                 View
               </Link>
             </li>
-            
+            <li className="nav-item">
+              <Link to="/homePage" className="nav-link">
+                Home
+              </Link>
+            </li>
              
           </>
         )}
