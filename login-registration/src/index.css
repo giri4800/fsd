@@ -1,0 +1,457 @@
+@import url("https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800");
+
+
+* {
+  box-sizing: border-box;
+}
+body {
+  background: #1c8ef9 !important;
+  min-height: 100vh;
+  display: flex;
+  font-weight: 400;
+  font-family: "Fira Sans", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label,
+span {
+  font-weight: 500;
+  font-family: "Fira Sans", sans-serif;
+}
+
+body,
+html,
+.App,
+#root,
+.auth-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.navbar-light {
+  background-color: #ffffff;
+  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+}
+
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+}
+
+.auth-inner {
+  width: 450px;
+  margin: auto;
+  background: #ffffff;
+  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+  padding: 40px 55px 45px 55px;
+  border-radius: 15px;
+  transition: all 0.3s;
+}
+
+.auth-wrapper .form-control:focus {
+  border-color: #167bff;
+  box-shadow: none;
+}
+
+.auth-wrapper h3 {
+  text-align: center;
+  margin: 0;
+  line-height: 1;
+  padding-bottom: 20px;
+}
+
+.custom-control-label {
+  font-weight: 400;
+}
+
+.forgot-password,
+.forgot-password a {
+  text-align: right;
+  font-size: 13px;
+  padding-top: 10px;
+  color: #7f7d7d;
+  margin: 0;
+}
+
+.forgot-password a {
+  color: #167bff;
+}
+
+table,
+th,
+td {
+  border: 1px solid black !important;
+}
+
+/* Navbar styles */
+.navbar {
+  background-color: #333;
+  margin-bottom: 1px;
+  padding: 2rem;
+}
+
+.nav-list {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  margin: 0 1rem;
+}
+
+.nav-link {
+  color: white !important;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  text-decoration: none;
+}
+/* index.css */
+/* index.css */
+.main-container {
+  background-color: #f3f4f6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Keeps content at the top */
+  position: relative; /* Added to position children absolutely */
+}
+
+.logout-btn {
+  position: absolute;
+  top: 10px;
+  margin-top: 20px;
+  right: 16px;
+  background-color: #ff5f5f;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease;
+}
+
+.logout-btn:hover {
+  background-color: #d9534f;
+}
+
+.search-container {
+  position: absolute; /* Position it absolutely */
+  top: 76px; /* Adjust based on your layout */
+  left: 16px; /* Align to the right */
+  display:inline;
+  align-items: center; /* Center align label and input vertically */
+}
+
+.label {
+  margin-right: 8px; /* Space between label and input */
+  font-weight: bold;
+  color: #555;
+}
+
+.input-field {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+  width: 200px; /* Set a width for the search box */
+}
+
+.form-container {
+  max-width: 800px;
+  width: 100%;
+  padding: 16px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 60px; /* Ensure form is below the search box and logout button */
+}
+
+.form-heading {
+  font-size: 24px;
+  text-align: center;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.submit-btn {
+  grid-column: span 2;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.2s ease;
+}
+
+.submit-btn:hover {
+  background-color: #0056b3;
+}
+/* TransportLinks.css */
+.transport-link {
+
+ color: #f3f4f6; /* Tailwind's blue-600 color */
+  text-decoration: none;
+  transition: text-decoration 0.3s ease;
+}
+
+.transport-link:hover {
+  color: #333;
+  text-decoration: underline;
+}
+
+.transport-links-container {
+  background-color: rgb(22, 189, 400);
+  display: flex;
+  color: #f3f4f6;
+  flex-direction: column;
+  gap: 1rem; /* Adds spacing between links */
+}
+.main-container1{
+  background-color: #16bdff;
+  margin-top: 10px;
+}
+.auth-inner {
+  width: 90%;
+  max-width: 1200px;
+  padding: 20px;
+}
+
+.table-container {
+  overflow-x: auto;
+  margin-top: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+table th, table td {
+  text-align: center;
+  padding: 5px;
+  border: 1px solid #ccc;
+  white-space: nowrap; /* Keeps content in a single line */
+}
+
+table th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 5px 10px;
+  margin-left: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.record-info {
+  margin-left: auto;
+  font-size: 12px;
+  color: #555;
+}
+
+.delete-btn {
+  background-color: transparent;
+  border: none;
+  color: red;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  color: darkred;
+}
+.auth-inner {
+  width: 90%;
+  max-width: 1200px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Add spacing between elements */
+  margin-left: 750px;
+  margin-top: -70px;
+  background-color: #f9f9f9; /* Slightly different color to separate it visually */
+  padding: 4px;
+  border-radius: 8px;
+  border: 1px solid #0e0d0d;
+}
+
+.search-icon {
+  font-size: 18px;
+  color: #555;
+}
+
+.search-input {
+  flex: 1; /* Take up the remaining space */
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.record-info {
+  font-size: 14px;
+  color: #555;
+}
+
+.table-container {
+  overflow-x: auto;
+  margin-top: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+table th, table td {
+  text-align: center;
+  padding: 5px;
+  border: 1px solid #ccc;
+  white-space: nowrap;
+}
+
+table th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+.delete-btn {
+  background-color: transparent;
+  border: none;
+  color: red;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  color: darkred;
+}
+
+.logout-btn {
+  margin-top: 3px;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background-color: #0056b3;
+}
+/* For the outer wrapper to center everything */
+.auth-wrapper1 {
+  display: flex;
+  justify-content: center; /* Horizontally center */
+  align-items: center; /* Vertically center */
+  height: 100vh; /* Full height of the viewport */
+  background-color: #16bdff; /* Light background color for better contrast */
+  margin: 0;
+}
+
+/* Inner container styling */
+.auth-inner1 {
+  width: 100%;
+  max-width: 400px; /* Set a maximum width for the form */
+  padding: 20px;
+  background-color: #ffffff; /* White background for the form */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for a polished look */
+}
+
+/* General form input styling */
+form {
+  display: flex;
+  flex-direction: column; /* Stack all elements vertically */
+}
+
+form h3 {
+  text-align: center; /* Center the heading */
+  margin-bottom: 20px; /* Add spacing below the heading */
+  color: #333;
+}
+
+form .mb-3 {
+  margin-bottom: 15px; /* Add spacing between input groups */
+}
+
+form label {
+  margin-bottom: 5px; /* Add spacing below labels */
+  font-weight: 500; /* Slightly bold text for better readability */
+}
+/* Auth Wrapper Styling */
+ 
+ 
+/* Pagination Styling */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 8px 16px;
+  margin: 0 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.pagination button:disabled {
+  background-color: #e0e0e0;
+  cursor: not-allowed;
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.pagination span {
+  padding: 8px 16px;
+  font-size: 14px;
+  color: #333;
+}
+
+ 
