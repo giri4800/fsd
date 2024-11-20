@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faPrint } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../App.css";
 
 export default function TransitView() {
   const [data, setData] = useState([]);
-  const [centerQuery, setCenterQuery] = useState(""); // for center search
+  const [centerQuery, setCenterQuery] = useState(""); 
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
   const [totalBales, setTotalBales] = useState(0);
-  const [centerTotalBales, setCenterTotalBales] = useState(0); // total bales for searched center
+  const [centerTotalBales, setCenterTotalBales] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const recordsPerPage = 8;
@@ -27,7 +27,7 @@ export default function TransitView() {
   const fetchTransitData = () => {
     const url = new URL('http://localhost:5000/getAllTransits');
     const params = new URLSearchParams({
-      centerQuery: centerQuery, // Send center query parameter
+      centerQuery: centerQuery,
       fromDate: formatDate(fromDate),
       toDate: formatDate(toDate),
       page: currentPage
@@ -46,7 +46,7 @@ export default function TransitView() {
           }));
           setData(formattedData);
           setTotalBales(data.totalBales || 0);
-          setCenterTotalBales(data.centerTotalBales || 0); // Set center-specific total bales
+          setCenterTotalBales(data.centerTotalBales || 0);
           setTotalPages(Math.ceil(data.totalRecords / recordsPerPage));
         } else {
           setData([]);
@@ -62,6 +62,98 @@ export default function TransitView() {
         setCenterTotalBales(0);
         setTotalPages(1);
       });
+  };
+
+  const handlePrint = () => {
+    // Create a new window for printing
+    const printWindow = window.open('', '', 'height=500, width=800');
+    
+    // Construct HTML for printing
+    printWindow.document.write('<html><head><title>Transit Records</title>');
+    printWindow.document.write('<style>');
+    printWindow.document.write(`
+      body { font-family: Arial, sans-serif; }
+      table { 
+        width: 100%; 
+        border-collapse: collapse; 
+        margin-bottom: 20px; 
+      }
+      th, td { 
+        border: 1px solid #ddd; 
+        padding: 8px; 
+        text-align: left; 
+        font-size: 12px;
+      }
+      th { 
+        background-color: #f2f2f2; 
+        font-weight: bold; 
+      }
+      .print-header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+    `);
+    printWindow.document.write('</style></head><body>');
+    <h2>Transit Records</h2>
+    // Add print header with filter details
+    printWindow.document.write(`
+      <div class="print-header">
+        
+        ${centerQuery ? `<p>Center: ${centerQuery}</p>` : ''}
+        ${fromDate ? `<p>From Date: ${fromDate}</p>` : ''}
+        ${toDate ? `<p>To Date: ${toDate}</p>` : ''}
+        <p>Total Bales: ${totalBales}</p>
+      </div>
+    `);
+
+    // Create table
+    printWindow.document.write('<table>');
+    printWindow.document.write(`
+      <thead>
+        <tr>
+          <th>Center</th>
+          <th>Date</th>
+          <th>Invoice</th>
+          <th>LotNo</th>
+          <th>No of bales</th>
+          <th>L.R No</th>
+          <th>Eway-bill</th>
+          <th>Vehicle No</th>
+          <th>Factory</th>
+          <th>TO</th>
+          <th>U-D Date</th>
+        </tr>
+      </thead>
+      <tbody>
+    `);
+
+    // Add table rows
+    data.forEach(item => {
+      printWindow.document.write(`
+        <tr>
+          <td>${item.center}</td>
+          <td>${item.date}</td>
+          <td>${item.invoice}</td>
+          <td>${item.lotNo}</td>
+          <td>${item.bales}</td>
+          <td>${item.lrNo}</td>
+          <td>${item.ewayNo}</td>
+          <td>${item.vehicleNo}</td>
+          <td>${item.factory}</td>
+          <td>${item.to}</td>
+          <td>${item.udNo}</td>
+        </tr>
+      `);
+    });
+
+    printWindow.document.write('</tbody></table>');
+    printWindow.document.write('</body></html>');
+    
+    // Close the document writing
+    printWindow.document.close();
+    
+    // Trigger print
+    printWindow.print();
   };
 
   const handleCenterQueryChange = (e) => {
@@ -130,43 +222,52 @@ export default function TransitView() {
             className="date-input"
             min={fromDate || undefined}
           />
+          {data.length > 0 && (
+            <button 
+              onClick={handlePrint} 
+              className="print-btn"
+              title="Print Filtered Records"
+            >
+              <FontAwesomeIcon icon={faPrint} /> Print
+            </button>
+          )}
         </div>
 
         <div className="bales-summary">
           <div className="total-bales">
             <span>Total Bales: {totalBales}</span>
           </div>
-          
         </div>
 
+        {/* Rest of the component remains the same */}
         <div className="table-container">
           <table>
             <thead>
               <tr>
+                <th>Center</th>
                 <th>Date</th>
                 <th>Invoice</th>
                 <th>LotNo</th>
                 <th>No of bales</th>
-                <th>Eway-bill</th>
                 <th>L.R No</th>
+                <th>Eway-bill</th>
                 <th>Vehicle No</th>
-                <th>Center</th>
                 <th>Factory</th>
                 <th>TO</th>
-                <th>UD No</th>
+                <th>U-D Date</th>
               </tr>
             </thead>
             <tbody>
               {data.map((item) => (
                 <tr key={item._id}>
+                  <td>{item.center}</td>
                   <td>{item.date}</td>
                   <td>{item.invoice}</td>
                   <td>{item.lotNo}</td>
                   <td>{item.bales}</td>
-                  <td>{item.ewayNo}</td>
                   <td>{item.lrNo}</td>
+                  <td>{item.ewayNo}</td>
                   <td>{item.vehicleNo}</td>
-                  <td>{item.center}</td>
                   <td>{item.factory}</td>
                   <td>{item.to}</td>
                   <td>{item.udNo}</td>
@@ -176,6 +277,7 @@ export default function TransitView() {
           </table>
         </div>
 
+        {/* Pagination and logout buttons remain the same */}
         <div className="pagination">
           <button 
             onClick={() => handlePageChange(currentPage - 1)} 

@@ -66,11 +66,7 @@ const Navbar = ({ isLoggedIn, userType }) => {
                 Home
               </Link>
             </li>
-          <li className="nav-item">
-              <Link to="/homePage" className="nav-link">
-                Back
-              </Link>
-            </li>
+           
            
             <li className="nav-item">
               <Link to="/about" className="nav-link">
